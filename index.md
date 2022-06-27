@@ -139,10 +139,10 @@ address.
   <strong>Where:</strong> This workshop will support in-person and remote, online attendance.   
   If you register as a remote attendeee,
   the instructors will provide you with the information you will need to connect to this meeting.   
-  
+
   If you register as an in-person attendeee, the workshop will take place at   
   Davidson Library, UCEN Rd, Santa Barbara, CA.   
-  
+
   We acknowledge that this University system was founded upon exclusions and erasures of many Indigenous peoples, including those on whose lands UCSB is located: the villages and unceded lands of the <a href= "https://native-land.ca/maps/territories/chumash/">Chumash people</a>. You may read more on <a href= "https://www.csusm.edu/cicsc/land.pdf">Land Acknowlegment</a>
 </p>
 {% elsif online == "true_public" %}
@@ -274,6 +274,32 @@ Edit the text to match who can attend the workshop. For instance:
 
 <hr/>
 
+<h2>Complete Registration</h2>
+<p>
+  To participate in this
+  {% if site.carpentry == "swc" %}
+  Software Carpentry
+  {% elsif site.carpentry == "dc" %}
+  Data Carpentry
+  {% elsif site.carpentry == "lc" %}
+  Library Carpentry
+  {% endif %}
+  workshop,
+  you will need access to complete your registration by following the steps below. <strong>Please complete these steps before end-of-day August 5, 2022 PST</strong>- the Friday before the workshop.
+</p>
+
+> ## Steps for Completing Workshop Registration
+>
+> 1. Download this [zip archive](https://drive.google.com/file/d/19y6-R_mob8Nij-ItWW5Iaf7ulvqFVP_w/view?usp=sharing).
+> 2. Extract the files to your local computer.
+> 3. Log into this [locally hosted image of RStudio]() with your UCSBnetID. Please contact us if you do not have a UCSBnetID.
+> 4. Select the server option "R/RStudio Carpentry". This should open RStudio on your browser. If this does not, please check if your browser is up-to-date.
+> 5. Upload the previously extracted files into RStudio.
+> 6. Run the r script "InstallTest.r". After the script runs, you should have five objects in your environment and a map in your plots pane. The map will take a moment to draw.
+> 7. Email the map to library-collaboratory@ucsb.edu to complete your registration.
+>
+{: .checklist}
+
 {% comment%}
 CODE OF CONDUCT
 {% endcomment %}
@@ -386,7 +412,6 @@ The lesson taught in this workshop is being piloted and a precise schedule is ye
 
 <hr/>
 
-
 {% comment %}
 SETUP
 
@@ -400,53 +425,4 @@ please preview your site before committing, and make sure to run
 {% endcomment %}
 
 <h2 id="setup">Setup</h2>
-
-<p>
-  To participate in a
-  {% if site.carpentry == "swc" %}
-  Software Carpentry
-  {% elsif site.carpentry == "dc" %}
-  Data Carpentry
-  {% elsif site.carpentry == "lc" %}
-  Library Carpentry
-  {% endif %}
-  workshop,
-  you will need access to software as described below.
-  In addition, you will need an up-to-date web browser.
-</p>
-<p>
-  We maintain a list of common issues that occur during installation as a reference for instructors
-  that may be useful on the
-  <a href = "{{site.swc_github}}/workshop-template/wiki/Configuration-Problems-and-Solutions">Configuration Problems and Solutions wiki page</a>.
-</p>
-
-{% comment %}
-For online workshops, the section below provides:
-- installation instructions for the Zoom client
-- recommendations for setting up Learners' workspace so they can follow along
-  the instructions and the videoconferencing
-
-If you do not use Zoom for your online workshop, edit the file
-`_includes/install_instructions/videoconferencing.html`
-to include the relevant installation instrucctions.
-{% endcomment %}
-{% if online != "false" %}
-{% include install_instructions/videoconferencing.html %}
-{% endif %}
-
-{% comment %}
-These are the installation instructions for the tools used
-during the workshop.
-{% endcomment %}
-
-{% if site.carpentry == "swc" %}
-{% include swc/setup.html %}
-{% elsif site.carpentry == "dc" %}
-{% include dc/setup.html %}
-{% elsif site.carpentry == "lc" %}
-{% include lc/setup.html %}
-{% elsif site.carpentry == "incubator" %}
-Please check the "Setup" page of
-[the lesson site]({{ site.incubator_lesson_site }}) for instructions to follow
-to obtain the software and data you will need to follow the lesson.
-{% endif %}
+<strong>Please refer to the [setup page](https://ucsbcarpentry.github.io/2022-08-09-ucsb-r-geospatial/setup.html)</strong> for instructions on what you need to do in order to be ready for this workshop.
