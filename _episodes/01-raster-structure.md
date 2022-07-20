@@ -253,6 +253,15 @@ ggplot() +
 ~~~
 {: .language-r}
 
+Also, the column name that we inherited from the file makes no sense. It's
+altitude, so let's rename it that:
+names(HARV_DSM_df)[names(HARV_DSM_df) == 'HARV_dsmCrop'] <- 'Altitude'
+~~~
+
+~~~
+{: .language-r}
+
+
 <img src="../fig/rmd-01-ggplot-raster-1.png" title="Raster plot with ggplot2 using the viridis color scale" alt="Raster plot with ggplot2 using the viridis color scale" width="612" style="display: block; margin: auto;" />
 > ## Plotting Tip
 >
