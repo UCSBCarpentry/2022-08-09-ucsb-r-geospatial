@@ -106,7 +106,7 @@ If you wish to store this information in R, you can do the following:
 
 
 ~~~
-HARV_dsmCrop_info <- capture.output(
+HARV_DSM_info <- capture.output(
   GDALinfo("data/NEON-DS-Airborne-Remote-Sensing/HARV/DSM/HARV_dsmCrop.tif")
 )
 ~~~
@@ -126,17 +126,17 @@ function to open a raster in R.
 > To improve code
 > readability, file and object names should be used that make it clear what is in
 > the file. The data for this episode were collected from Harvard Forest so
-> we'll use a naming convention of `datatype_HARV`.
+> we'll use a naming convention of `HARV_datatype`.
 {: .callout}
 
 First we will load our raster file into R and view the data structure.
 
 
 ~~~
-DSM_HARV <- 
+HARV_DSM <- 
   raster("data/NEON-DS-Airborne-Remote-Sensing/HARV/DSM/HARV_dsmCrop.tif")
 
-DSM_HARV
+HARV_DSM
 ~~~
 {: .language-r}
 
@@ -160,7 +160,7 @@ columns, descriptive statistics for raster data can be retrieved like
 
 
 ~~~
-summary(DSM_HARV)
+summary(HARV_DSM)
 ~~~
 {: .language-r}
 
@@ -191,7 +191,7 @@ you can use the parameter `maxsamp`:
 
 
 ~~~
-summary(DSM_HARV, maxsamp = ncell(DSM_HARV))
+summary(HARV_DSM, maxsamp = ncell(HARV_DSM))
 ~~~
 {: .language-r}
 
@@ -218,7 +218,7 @@ The `raster` package has an built-in function for conversion to a plotable dataf
 
 
 ~~~
-DSM_HARV_df <- as.data.frame(DSM_HARV, xy = TRUE)
+HARV_DSM_df <- as.data.frame(HARV_DSM, xy = TRUE)
 ~~~
 {: .language-r}
 
@@ -227,7 +227,7 @@ dataframe format.
 
 
 ~~~
-str(DSM_HARV_df)
+str(HARV_DSM_df)
 ~~~
 {: .language-r}
 
@@ -247,7 +247,7 @@ which is a color-blindness friendly color scale. We will also use the `coord_qui
 
 ~~~
 ggplot() +
-    geom_raster(data = DSM_HARV_df , aes(x = x, y = y, fill = HARV_dsmCrop)) +
+    geom_raster(data = HARV_DSM_df , aes(x = x, y = y, fill = HARV_dsmCrop)) +
     scale_fill_viridis_c() +
     coord_quickmap()
 ~~~
@@ -266,7 +266,7 @@ ggplot() +
 > >  See `?plot` for more arguments to customize the plot
 > > 
 > > ~~~
-> > plot(DSM_HARV)
+> > plot(HARV_DSM)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -291,7 +291,7 @@ function.
 
 
 ~~~
-crs(DSM_HARV)
+crs(HARV_DSM)
 ~~~
 {: .language-r}
 
@@ -333,7 +333,7 @@ can view these values:
 
 
 ~~~
-minValue(DSM_HARV)
+minValue(HARV_DSM)
 ~~~
 {: .language-r}
 
@@ -347,7 +347,7 @@ minValue(DSM_HARV)
 
 
 ~~~
-maxValue(DSM_HARV)
+maxValue(HARV_DSM)
 ~~~
 {: .language-r}
 
@@ -365,7 +365,7 @@ maxValue(DSM_HARV)
 >
 > 
 > ~~~
-> DSM_HARV <- setMinMax(DSM_HARV)
+> HARV_DSM <- setMinMax(HARV_DSM)
 > ~~~
 > {: .language-r}
 {: .callout}
@@ -374,7 +374,7 @@ We can see that the elevation at our site ranges from 305.0700073m to
 416.0699768m. For mountainous Massachusetts, that passes the smell test.
 
 ## Raster Bands
-The Digital Surface Model object (`DSM_HARV`) that we've been working with is a
+The Digital Surface Model object (`HARV_DSM`) that we've been working with is a
 single band raster. This means that there is only one dataset stored in the
 raster: surface elevation in meters for one time period.
 
@@ -386,7 +386,7 @@ view the number of bands in a raster using the `nlayers()` function.
 
 
 ~~~
-nlayers(DSM_HARV)
+nlayers(HARV_DSM)
 ~~~
 {: .language-r}
 
@@ -454,7 +454,7 @@ opens up the raster, it will assign each instance of the value to `NA`. Values
 of `NA` will be ignored by R as demonstrated above.
 
 > ## Challenge
-> Use the output from the `GDALinfo()` function to find out what `NoDataValue` is used for our `DSM_HARV` dataset.
+> Use the output from the `GDALinfo()` function to find out what `NoDataValue` is used for our `HARV_DSM` dataset.
 >
 > > ## Answers
 > >
@@ -531,7 +531,7 @@ useful in identifying outliers and bad data values in our raster data.
 
 ~~~
 ggplot() +
-    geom_histogram(data = DSM_HARV_df, aes(HARV_dsmCrop))
+    geom_histogram(data = HARV_DSM_df, aes(HARV_dsmCrop))
 ~~~
 {: .language-r}
 
@@ -556,7 +556,7 @@ by using the `bins` value in the `geom_histogram()` function.
 
 ~~~
 ggplot() +
-    geom_histogram(data = DSM_HARV_df, aes(HARV_dsmCrop), bins = 40)
+    geom_histogram(data = HARV_DSM_df, aes(HARV_dsmCrop), bins = 40)
 ~~~
 {: .language-r}
 
@@ -571,7 +571,7 @@ no bad data values in this particular raster.
 >
 > Use `GDALinfo()` to determine the following about the `NEON-DS-Airborne-Remote-Sensing/HARV/DSM/HARV_DSMhill.tif` file:
 >
-> 1. Does this file have the same CRS as `DSM_HARV`?
+> 1. Does this file have the same CRS as `HARV_DSM`?
 > 2. What is the `NoDataValue`?
 > 3. What is resolution of the raster data?
 > 4. How large would a 5x5 pixel area be on the Earth's surface?
@@ -614,7 +614,7 @@ no bad data values in this particular raster.
 > > AREA_OR_POINT=Area 
 > > ~~~
 > > {: .output}
-> > 1. If this file has the same CRS as DSM_HARV?  Yes: UTM Zone 18, WGS84, meters.
+> > 1. If this file has the same CRS as HARV_DSM?  Yes: UTM Zone 18, WGS84, meters.
 > > 2. What format `NoDataValues` take?  -9999
 > > 3. The resolution of the raster data? 1x1
 > > 4. How large a 5x5 pixel area would be? 5mx5m How? We are given resolution of 1x1 and units in meters, therefore resolution of 5x5 means 5x5m.
