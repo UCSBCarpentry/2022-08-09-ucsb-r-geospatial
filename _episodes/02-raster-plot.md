@@ -49,11 +49,11 @@ where those breaks should be. To make these decisions, it is useful to first exp
 
 
 ~~~
-DSM_HARV_df <- DSM_HARV_df %>%
-                mutate(fct_elevation = cut(HARV_dsmCrop, breaks = 3))
+HARV_DSM_df <- HARV_DSM_df %>%
+                mutate(fct_elevation = cut(Altitude, breaks = 3))
 
 ggplot() +
-    geom_bar(data = DSM_HARV_df, aes(fct_elevation))
+    geom_bar(data = HARV_DSM_df, aes(fct_elevation))
 ~~~
 {: .language-r}
 
@@ -63,7 +63,7 @@ If we want to know the cutoff values for the groups, we can ask for the unique v
 of `fct_elevation`:
 
 ~~~
-unique(DSM_HARV_df$fct_elevation)
+unique(HARV_DSM_df$fct_elevation)
 ~~~
 {: .language-r}
 
@@ -80,7 +80,7 @@ And we can get the count of values in each group using `dplyr`'s
 
 
 ~~~
-DSM_HARV_df %>%
+HARV_DSM_df %>%
         group_by(fct_elevation) %>%
         count()
 ~~~
@@ -109,10 +109,10 @@ of the number of breaks we want.
 ~~~
 custom_bins <- c(300, 350, 400, 450)
 
-DSM_HARV_df <- DSM_HARV_df %>%
-  mutate(fct_elevation_2 = cut(HARV_dsmCrop, breaks = custom_bins))
+HARV_DSM_df <- HARV_DSM_df %>%
+  mutate(fct_elevation_2 = cut(Altitude, breaks = custom_bins))
 
-unique(DSM_HARV_df$fct_elevation_2)
+unique(HARV_DSM_df$fct_elevation_2)
 ~~~
 {: .language-r}
 
@@ -135,7 +135,7 @@ And now we can plot our bar plot again, using the new groups:
 
 ~~~
 ggplot() +
-  geom_bar(data = DSM_HARV_df, aes(fct_elevation_2))
+  geom_bar(data = HARV_DSM_df, aes(fct_elevation_2))
 ~~~
 {: .language-r}
 
@@ -145,7 +145,7 @@ And we can get the count of values in each group in the same way we did before:
 
 
 ~~~
-DSM_HARV_df %>%
+HARV_DSM_df %>%
   group_by(fct_elevation_2) %>%
   count()
 ~~~
@@ -169,7 +169,7 @@ We can use those groups to plot our raster data, with each group being a differe
 
 ~~~
 ggplot() +
-  geom_raster(data = DSM_HARV_df , aes(x = x, y = y, fill = fct_elevation_2)) + 
+  geom_raster(data = HARV_DSM_df , aes(x = x, y = y, fill = fct_elevation_2)) + 
   coord_quickmap()
 ~~~
 {: .language-r}
@@ -203,7 +203,7 @@ To use these in our map, we pass them across using the
 
 ~~~
 ggplot() +
- geom_raster(data = DSM_HARV_df , aes(x = x, y = y,
+ geom_raster(data = HARV_DSM_df , aes(x = x, y = y,
                                       fill = fct_elevation_2)) + 
     scale_fill_manual(values = terrain.colors(3)) + 
     coord_quickmap()
@@ -228,7 +228,7 @@ to the `name` argument of the `scale_fill_manual()` function.
 my_col <- terrain.colors(3)
 
 ggplot() +
- geom_raster(data = DSM_HARV_df , aes(x = x, y = y,
+ geom_raster(data = HARV_DSM_df , aes(x = x, y = y,
                                       fill = fct_elevation_2)) + 
     scale_fill_manual(values = my_col, name = "Elevation") + 
     coord_quickmap()
@@ -243,7 +243,7 @@ the relevant part of the `theme()` function.
 
 ~~~
 ggplot() +
- geom_raster(data = DSM_HARV_df , aes(x = x, y = y,
+ geom_raster(data = HARV_DSM_df , aes(x = x, y = y,
                                       fill = fct_elevation_2)) + 
     scale_fill_manual(values = my_col, name = "Elevation") +
     theme(axis.title = element_blank()) + 
@@ -264,13 +264,13 @@ ggplot() +
 > > ## Answers
 > > 
 > > ~~~
-> > DSM_HARV_df <- DSM_HARV_df  %>%
-> >                mutate(fct_elevation_6 = cut(HARV_dsmCrop, breaks = 6)) 
+> > HARV_DSM_df <- HARV_DSM_df  %>%
+> >                mutate(fct_elevation_6 = cut(Altitude, breaks = 6)) 
 > > 
 > >  my_col <- terrain.colors(6)
 > > 
 > > ggplot() +
-> >     geom_raster(data = DSM_HARV_df , aes(x = x, y = y,
+> >     geom_raster(data = HARV_DSM_df , aes(x = x, y = y,
 > >                                       fill = fct_elevation_6)) + 
 > >     scale_fill_manual(values = my_col, name = "Elevation") + 
 > >     ggtitle("Classified Elevation Map - NEON Harvard Forest Field Site") +
@@ -298,10 +298,10 @@ First we need to read in our DSM hillshade data and view the structure:
 
 
 ~~~
-DSM_hill_HARV <-
+HARV_hill <-
   raster("data/NEON-DS-Airborne-Remote-Sensing/HARV/DSM/HARV_DSMhill.tif")
 
-DSM_hill_HARV
+HARV_hill
 ~~~
 {: .language-r}
 
@@ -323,9 +323,9 @@ Next we convert it to a dataframe, so that we can plot it using `ggplot2`:
 
 
 ~~~
-DSM_hill_HARV_df <- as.data.frame(DSM_hill_HARV, xy = TRUE) 
+HARV_hill_df <- as.data.frame(HARV_hill, xy = TRUE) 
 
-str(DSM_hill_HARV_df)
+str(HARV_hill_df)
 ~~~
 {: .language-r}
 
@@ -344,7 +344,7 @@ Now we can plot the hillshade data:
 
 ~~~
 ggplot() +
-  geom_raster(data = DSM_hill_HARV_df,
+  geom_raster(data = HARV_hill_df,
               aes(x = x, y = y, alpha = HARV_DSMhill)) + 
   scale_alpha(range =  c(0.15, 0.65), guide = "none") + 
   coord_quickmap()
@@ -363,15 +363,15 @@ ggplot() +
 {: .callout}
 
 We can layer another raster on top of our hillshade by adding another call to 
-the `geom_raster()` function. Let's overlay `DSM_HARV` on top of the `hill_HARV`.
+the `geom_raster()` function. Let's overlay `HARV_DSM` on top of the `hill_HARV`.
 
 
 ~~~
 ggplot() +
-  geom_raster(data = DSM_HARV_df , 
+  geom_raster(data = HARV_DSM_df , 
               aes(x = x, y = y, 
-                  fill = HARV_dsmCrop)) + 
-  geom_raster(data = DSM_hill_HARV_df, 
+                  fill = Altitude)) + 
+  geom_raster(data = HARV_hill_df, 
               aes(x = x, y = y, 
                   alpha = HARV_DSMhill)) +  
   scale_fill_viridis_c() +  
