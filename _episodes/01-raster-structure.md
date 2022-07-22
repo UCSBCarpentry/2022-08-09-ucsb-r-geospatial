@@ -540,7 +540,7 @@ useful in identifying outliers and bad data values in our raster data.
 
 ~~~
 ggplot() +
-    geom_histogram(data = HARV_DSM_df, aes(HARV_dsmCrop))
+    geom_histogram(data = HARV_DSM_df, aes(Altitude))
 ~~~
 {: .language-r}
 
@@ -565,7 +565,7 @@ by using the `bins` value in the `geom_histogram()` function.
 
 ~~~
 ggplot() +
-    geom_histogram(data = HARV_DSM_df, aes(HARV_dsmCrop), bins = 40)
+    geom_histogram(data = HARV_DSM_df, aes(Altitude), bins = 40)
 ~~~
 {: .language-r}
 
