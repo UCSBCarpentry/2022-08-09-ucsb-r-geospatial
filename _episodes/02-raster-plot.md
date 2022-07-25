@@ -443,15 +443,15 @@ Range field site.
 > > ~~~
 > > # CREATE DTM MAP
 > > # import DTM
-> > DTM_SJER <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DTM/SJER_dtmCrop.tif")
-> > DTM_SJER_df <- as.data.frame(DTM_SJER, xy = TRUE)
+> > SJER_DTM <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DTM/SJER_dtmCrop.tif")
+> > SJER_DTM_df <- as.data.frame(SJER_DTM, xy = TRUE)
 > > 
 > > # DTM Hillshade
 > > DTM_hill_SJER <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DTM/SJER_dtmHill.tif")
 > > DTM_hill_SJER_df <- as.data.frame(DTM_hill_SJER, xy = TRUE)
 > > 
 > > ggplot() +
-> >     geom_raster(data = DTM_SJER_df ,
+> >     geom_raster(data = SJER_DTM_df ,
 > >                 aes(x = x, y = y,
 > >                      fill = SJER_dtmCrop,
 > >                      alpha = 2.0)
