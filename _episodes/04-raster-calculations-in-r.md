@@ -138,7 +138,7 @@ what this data looks like. First we'll plot the DTM elevation data:
 
 ~~~
  ggplot() +
-      geom_raster(data = DTM_HARV_df , 
+      geom_raster(data = HARV_DTM_df , 
               aes(x = x, y = y, fill = HARV_dtmCrop)) +
      scale_fill_gradientn(name = "Elevation", colors = terrain.colors(10)) + 
      coord_quickmap()
@@ -152,7 +152,7 @@ And then the DSM elevation data:
 
 ~~~
  ggplot() +
-      geom_raster(data = DSM_HARV_df , 
+      geom_raster(data = HARV_DSM_df , 
               aes(x = x, y = y, fill = HARV_dsmCrop)) +
      scale_fill_gradientn(name = "Elevation", colors = terrain.colors(10)) + 
      coord_quickmap()
@@ -182,9 +182,9 @@ After subtracting, let's create a dataframe so we can plot with `ggplot`.
 
 
 ~~~
-CHM_HARV <- DSM_HARV - DTM_HARV
+HARV_CHM <- HARV_DSM - HARV_DTM
 
-CHM_HARV_df <- as.data.frame(CHM_HARV, xy = TRUE)
+HARV_CHM_df <- as.data.frame(HARV_CHM, xy = TRUE)
 ~~~
 {: .language-r}
 
@@ -193,7 +193,7 @@ We can now plot the output CHM.
 
 ~~~
  ggplot() +
-   geom_raster(data = CHM_HARV_df , 
+   geom_raster(data = HARV_CHM_df , 
                aes(x = x, y = y, fill = layer)) + 
    scale_fill_gradientn(name = "Canopy Height", colors = terrain.colors(10)) + 
    coord_quickmap()
@@ -207,7 +207,7 @@ Canopy Height Model (CHM).
 
 
 ~~~
-ggplot(CHM_HARV_df) +
+ggplot(HARV_CHM_df) +
     geom_histogram(aes(layer))
 ~~~
 {: .language-r}
@@ -235,11 +235,11 @@ meters. Does this make sense for trees in Harvard Forest?
 > 
 > It's often a good idea to explore the range of values in a raster dataset just like we might explore a dataset that we collected in the field.
 > 
-> 1. What is the min and maximum value for the Harvard Forest Canopy Height Model (`CHM_HARV`) that we just created?
-> 2. What are two ways you can check this range of data for `CHM_HARV`?
+> 1. What is the min and maximum value for the Harvard Forest Canopy Height Model (`HARV_CHM`) that we just created?
+> 2. What are two ways you can check this range of data for `HARV_CHM`?
 > 3. What is the distribution of all the pixel values in the CHM?
 > 4. Plot a histogram with 6 bins instead of the default and change the color of the histogram.
-> 5. Plot the `CHM_HARV` raster using breaks that make sense for the data. Include an appropriate color palette for the data, plot title and no axes ticks / labels.
+> 5. Plot the `HARV_CHM` raster using breaks that make sense for the data. Include an appropriate color palette for the data, plot title and no axes ticks / labels.
 > 
 > > ## Answers
 > > 
@@ -247,7 +247,7 @@ meters. Does this make sense for trees in Harvard Forest?
 > > `na.rm = TRUE`. 
 > > 
 > > ~~~
-> > min(CHM_HARV_df$layer, na.rm = TRUE)
+> > min(HARV_CHM_df$layer, na.rm = TRUE)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -261,7 +261,7 @@ meters. Does this make sense for trees in Harvard Forest?
 > > 
 > > 
 > > ~~~
-> > max(CHM_HARV_df$layer, na.rm = TRUE)
+> > max(HARV_CHM_df$layer, na.rm = TRUE)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -278,7 +278,7 @@ meters. Does this make sense for trees in Harvard Forest?
 > > 3)
 > > 
 > > ~~~
-> > ggplot(CHM_HARV_df) +
+> > ggplot(HARV_CHM_df) +
 > >     geom_histogram(aes(layer))
 > > ~~~
 > > {: .language-r}
@@ -301,7 +301,7 @@ meters. Does this make sense for trees in Harvard Forest?
 > > 4)
 > > 
 > > ~~~
-> > ggplot(CHM_HARV_df) +
+> > ggplot(HARV_CHM_df) +
 > >     geom_histogram(aes(layer), colour="black", 
 > >                    fill="darkgreen", bins = 6)
 > > ~~~
@@ -319,11 +319,11 @@ meters. Does this make sense for trees in Harvard Forest?
 > > 
 > > ~~~
 > > custom_bins <- c(0, 10, 20, 30, 40)
-> > CHM_HARV_df <- CHM_HARV_df %>%
+> > HARV_CHM_df <- HARV_CHM_df %>%
 > >                   mutate(canopy_discrete = cut(layer, breaks = custom_bins))
 > > 
 > > ggplot() +
-> >   geom_raster(data = CHM_HARV_df , aes(x = x, y = y,
+> >   geom_raster(data = HARV_CHM_df , aes(x = x, y = y,
 > >                                        fill = canopy_discrete)) + 
 > >      scale_fill_manual(values = terrain.colors(4)) + 
 > >      coord_quickmap()
@@ -375,8 +375,8 @@ raster math, using the `overlay()` function.
 
 
 ~~~
-CHM_ov_HARV <- overlay(DSM_HARV,
-                       DTM_HARV,
+HARV_CHM_ov <- overlay(HARV_DSM,
+                       HARV_DTM,
                        fun = function(r1, r2) { return( r1 - r2) })
 ~~~
 {: .language-r}
@@ -413,7 +413,7 @@ file using
 the `writeRaster()` function.
 
 When we write this raster object to a GeoTIFF file we'll name it
-`CHM_HARV.tiff`. This name allows us to quickly remember both what the data
+`HARV_CHM.tiff`. This name allows us to quickly remember both what the data
 contains (CHM data) and for where (HARVard Forest). The `writeRaster()` function
 by default writes the output file to your working directory unless you specify a
 full file path.
@@ -423,7 +423,7 @@ a file of the same name.
 
 
 ~~~
-writeRaster(CHM_ov_HARV, "CHM_HARV.tiff",
+writeRaster(CHM_ov_HARV, "HARV_CHM.tiff",
             format="GTiff",
             overwrite=TRUE,
             NAflag=-9999)
@@ -473,7 +473,7 @@ are what you expect.
 > >
 > > 
 > > ~~~
-> > CHM_ov_SJER <- overlay(DSM_SJER,
+> > SJER_CHM_ov <- overlay(DSM_SJER,
 > >                        DTM_SJER,
 > >                        fun = function(r1, r2){ return(r1 - r2) })
 > > ~~~
@@ -482,7 +482,7 @@ are what you expect.
 > >
 > > 
 > > ~~~
-> > CHM_ov_SJER_df <- as.data.frame(CHM_ov_SJER, xy = TRUE)
+> > SJER_CHM_ov_df <- as.data.frame(SJER_CHM_ov, xy = TRUE)
 > > ~~~
 > > {: .language-r}
 > >
@@ -490,7 +490,7 @@ are what you expect.
 > >
 > > 
 > > ~~~
-> > ggplot(CHM_ov_SJER_df) +
+> > ggplot(SJER_CHM_ov_df) +
 > >     geom_histogram(aes(layer))
 > > ~~~
 > > {: .language-r}
@@ -509,7 +509,7 @@ are what you expect.
 > > 
 > > ~~~
 > >  ggplot() +
-> >       geom_raster(data = CHM_ov_SJER_df, 
+> >       geom_raster(data = SJER_CHM_ov_df, 
 > >               aes(x = x, y = y, 
 > >                    fill = layer)
 > >               ) + 
@@ -525,7 +525,7 @@ are what you expect.
 > >
 > > 
 > > ~~~
-> > writeRaster(CHM_ov_SJER, "chm_ov_SJER.tiff",
+> > writeRaster(SJER_CHM_ov, "SJER_CHM_ov.tiff",
 > >             format = "GTiff",
 > >             overwrite = TRUE,
 > >             NAflag = -9999)
@@ -538,7 +538,7 @@ are what you expect.
 > >
 > > 
 > > ~~~
-> > ggplot(CHM_HARV_df) +
+> > ggplot(HARV_CHM_df) +
 > >     geom_histogram(aes(layer))
 > > ~~~
 > > {: .language-r}
@@ -560,7 +560,7 @@ are what you expect.
 > > <img src="../fig/rmd-04-compare-chm-harv-sjer-1.png" title="plot of chunk compare-chm-harv-sjer" alt="plot of chunk compare-chm-harv-sjer" width="612" style="display: block; margin: auto;" />
 > > 
 > > ~~~
-> > ggplot(CHM_ov_SJER_df) +
+> > ggplot(SJER_CHM_ov_df) +
 > >     geom_histogram(aes(layer))
 > > ~~~
 > > {: .language-r}
