@@ -204,7 +204,7 @@ First we will reproject our `HARV_DTM_hill` raster data to match the `HARV_DTM` 
 
 
 ~~~
-DTM_hill_UTMZ18N_HARV <- projectRaster(HARV_DTM_hill,
+HARV_DTM_hill_reprojected <- projectRaster(HARV_DTM_hill,
                                        crs = crs(HARV_DTM))
 ~~~
 {: .language-r}
@@ -214,7 +214,7 @@ and our new DTM hillshade, to see how they are different.
 
 
 ~~~
-crs(DTM_hill_UTMZ18N_HARV)
+crs(HARV_DTM_hill_reprojected)
 ~~~
 {: .language-r}
 
@@ -244,7 +244,7 @@ We can also compare the extent of the two objects.
 
 
 ~~~
-extent(DTM_hill_UTMZ18N_HARV)
+extent(HARV_DTM_hill_reprojected)
 ~~~
 {: .language-r}
 
@@ -277,7 +277,7 @@ ymax       : 42.54234
 ~~~
 {: .output}
 
-Notice in the output above that the `crs()` of `DTM_hill_UTMZ18N_HARV` is now
+Notice in the output above that the `crs()` of `HARV_DTM_hill_reprojected` is now
 UTM. However, the extent values of `DTM_hillUTMZ18N_HARV` are different from
 `HARV_DTM_hill`.
 
@@ -287,7 +287,7 @@ UTM. However, the extent values of `DTM_hillUTMZ18N_HARV` are different from
 >
 > > ## Answers
 > >
-> > The extent for DTM_hill_UTMZ18N_HARV is in UTMs so the extent is in meters. The extent for HARV_DTM_hill is in lat/long so the extent is expressed
+> > The extent for HARV_DTM_hill_reprojected is in UTMs so the extent is in meters. The extent for HARV_DTM_hill is in lat/long so the extent is expressed
 > > in decimal degrees.
 > {: .solution}
 {: .challenge}
@@ -298,7 +298,7 @@ Let's next have a look at the resolution of our reprojected hillshade versus our
 
 
 ~~~
-res(DTM_hill_UTMZ18N_HARV)
+res(HARV_DTM_hill_reprojected)
 ~~~
 {: .language-r}
 
@@ -329,7 +329,7 @@ newly reprojected raster to be 1m x 1m resolution by adding a line of code
 
 
 ~~~
-  DTM_hill_UTMZ18N_HARV <- projectRaster(HARV_DTM_hill,
+  HARV_DTM_hill_reprojected <- projectRaster(HARV_DTM_hill,
                                          crs = crs(HARV_DTM),
                                          res = res(HARV_DTM)) 
 ~~~
@@ -337,7 +337,7 @@ newly reprojected raster to be 1m x 1m resolution by adding a line of code
 Now both our resolutions and our CRSs match, so we can plot these two data sets together. Let's double-check our resolution to be sure:
 
 ~~~
-res(DTM_hill_UTMZ18N_HARV)
+res(HARV_DTM_hill_reprojected)
 ~~~
 {: .language-r}
 
@@ -366,7 +366,7 @@ For plotting with `ggplot()`, we will need to create a dataframe from our newly 
 
 
 ~~~
-HARV_DTM_hill_2_df <- as.data.frame(DTM_hill_UTMZ18N_HARV, xy = TRUE)
+HARV_DTM_hill_2_df <- as.data.frame(HARV_DTM_hill_reprojected, xy = TRUE)
 ~~~
 {: .language-r}
 
