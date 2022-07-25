@@ -46,7 +46,7 @@ in the first band.
 
 
 ~~~
-RGB_band1_HARV <- raster("data/NEON-DS-Airborne-Remote-Sensing/HARV/RGB_Imagery/HARV_RGB_Ortho.tif")
+HARV_RGB_band1 <- raster("data/NEON-DS-Airborne-Remote-Sensing/HARV/RGB_Imagery/HARV_RGB_Ortho.tif")
 ~~~
 {: .language-r}
 
@@ -54,14 +54,14 @@ We need to convert this data to a data frame in order to plot it with `ggplot`.
 
 
 ~~~
-RGB_band1_HARV_df  <- as.data.frame(RGB_band1_HARV, xy = TRUE)
+HARV_RGB_band1_df  <- as.data.frame(HARV_RGB_band1, xy = TRUE)
 ~~~
 {: .language-r}
 
 
 ~~~
 ggplot() +
-  geom_raster(data = RGB_band1_HARV_df,
+  geom_raster(data = HARV_RGB_band1_df,
               aes(x = x, y = y, alpha = HARV_RGB_Ortho)) + 
   coord_quickmap()
 ~~~
@@ -78,7 +78,7 @@ ggplot() +
 > >
 > > 
 > > ~~~
-> > RGB_band1_HARV
+> > HARV_RGB_band1
 > > ~~~
 > > {: .language-r}
 > > 
@@ -110,7 +110,7 @@ ggplot() +
 >
 > The number of bands associated with a
 > raster object can also be determined using the `nbands()` function: syntax is
-> `nbands(RGB_band1_HARV)`.
+> `nbands(HARV_RGB_band1)`.
 {: .callout}
 
 ### Image Raster Data Values
@@ -132,7 +132,7 @@ want to work with). To import the green band, we would use `band = 2`.
 
 
 ~~~
-RGB_band2_HARV <-  raster("data/NEON-DS-Airborne-Remote-Sensing/HARV/RGB_Imagery/HARV_RGB_Ortho.tif", band = 2)
+HARV_RGB_band2 <-  raster("data/NEON-DS-Airborne-Remote-Sensing/HARV/RGB_Imagery/HARV_RGB_Ortho.tif", band = 2)
 ~~~
 {: .language-r}
 
@@ -140,14 +140,14 @@ We can convert this data to a data frame and plot the same way we plotted the re
 
 
 ~~~
-RGB_band2_HARV_df <- as.data.frame(RGB_band2_HARV, xy = TRUE)
+HARV_RGB_band2_df <- as.data.frame(HARV_RGB_band2, xy = TRUE)
 ~~~
 {: .language-r}
 
 
 ~~~
 ggplot() +
-  geom_raster(data = RGB_band2_HARV_df,
+  geom_raster(data = HARV_RGB_band2_df,
               aes(x = x, y = y, alpha = HARV_RGB_Ortho)) + 
   coord_equal()
 ~~~
@@ -175,7 +175,7 @@ To bring in all bands of a multi-band raster, we use the`stack()` function.
 
 
 ~~~
-RGB_stack_HARV <- stack("data/NEON-DS-Airborne-Remote-Sensing/HARV/RGB_Imagery/HARV_RGB_Ortho.tif")
+HARV_stack <- stack("data/NEON-DS-Airborne-Remote-Sensing/HARV/RGB_Imagery/HARV_RGB_Ortho.tif")
 ~~~
 {: .language-r}
 
@@ -183,7 +183,7 @@ Let's preview the attributes of our stack object:
 
 
 ~~~
-RGB_stack_HARV
+HARV_stack
 ~~~
 {: .language-r}
 
@@ -205,7 +205,7 @@ We can view the attributes of each band in the stack in a single output:
 
 
 ~~~
-RGB_stack_HARV@layers
+HARV_stack@layers
 ~~~
 {: .language-r}
 
@@ -254,7 +254,7 @@ attributes for using an index value:
 
 
 ~~~
-RGB_stack_HARV[[2]]
+HARV_stack[[2]]
 ~~~
 {: .language-r}
 
@@ -278,7 +278,7 @@ frame first.
  
 
 ~~~
-RGB_stack_HARV_df  <- as.data.frame(RGB_stack_HARV, xy = TRUE)
+HARV_stack_df  <- as.data.frame(HARV_stack, xy = TRUE)
 ~~~
 {: .language-r}
 
@@ -286,7 +286,7 @@ Each band in our RasterStack gets its own column in the data frame. Thus we have
 
 
 ~~~
-str(RGB_stack_HARV_df)
+str(HARV_stack_df)
 ~~~
 {: .language-r}
 
@@ -307,7 +307,7 @@ Let's create a histogram of the first band:
 
 ~~~
 ggplot() +
-  geom_histogram(data = RGB_stack_HARV_df, aes(HARV_RGB_Ortho.1))
+  geom_histogram(data = HARV_stack_df, aes(HARV_RGB_Ortho.1))
 ~~~
 {: .language-r}
 
@@ -325,7 +325,7 @@ And a raster plot of the second band:
 
 ~~~
 ggplot() +
-  geom_raster(data = RGB_stack_HARV_df,
+  geom_raster(data = HARV_stack_df,
               aes(x = x, y = y, alpha = HARV_RGB_Ortho.2)) + 
   coord_quickmap()
 ~~~
@@ -353,7 +353,7 @@ dataframe as this function isn't part of the `ggplot2` package).
 
 
 ~~~
-plotRGB(RGB_stack_HARV,
+plotRGB(HARV_stack,
         r = 1, g = 2, b = 3)
 ~~~
 {: .language-r}
@@ -379,7 +379,7 @@ the image.
 
 
 ~~~
-plotRGB(RGB_stack_HARV,
+plotRGB(HARV_stack,
         r = 1, g = 2, b = 3,
         scale = 800,
         stretch = "lin")
@@ -390,7 +390,7 @@ plotRGB(RGB_stack_HARV,
 
 
 ~~~
-plotRGB(RGB_stack_HARV,
+plotRGB(HARV_stack,
         r = 1, g = 2, b = 3,
         scale = 800,
         stretch = "hist")
@@ -559,7 +559,7 @@ the size of our RasterStack object:
 
 
 ~~~
-object.size(RGB_stack_HARV)
+object.size(HARV_stack)
 ~~~
 {: .language-r}
 
@@ -574,9 +574,9 @@ Now we will create a RasterBrick object from our RasterStack data and view its s
 
 
 ~~~
-RGB_brick_HARV <- brick(RGB_stack_HARV)
+HARV_brick <- brick(HARV_stack)
 
-object.size(RGB_brick_HARV)
+object.size(HARV_brick)
 ~~~
 {: .language-r}
 
@@ -595,7 +595,7 @@ You use the `plotRGB()` function to plot a RasterBrick too:
 
 
 ~~~
-plotRGB(RGB_brick_HARV)
+plotRGB(HARV_brick)
 ~~~
 {: .language-r}
 
@@ -606,8 +606,8 @@ plotRGB(RGB_brick_HARV)
 > We can view various functions (or methods) available to use on an R object with
 > `methods(class=class(objectNameHere))`. Use this to figure out:
 > 
-> 1. What methods can be used on the `RGB_stack_HARV` object?
-> 2. What methods can be used on a single band within `RGB_stack_HARV`?
+> 1. What methods can be used on the `HARV_stack` object?
+> 2. What methods can be used on a single band within `HARV_stack`?
 > 3. Why do you think there is a difference?
 > 
 > > ## Answers
@@ -616,7 +616,7 @@ plotRGB(RGB_brick_HARV)
 > >
 > > 
 > > ~~~
-> > methods(class=class(RGB_stack_HARV))
+> > methods(class=class(HARV_stack))
 > > ~~~
 > > {: .language-r}
 > > 
@@ -689,7 +689,7 @@ plotRGB(RGB_brick_HARV)
 > > 2) And compare that with the methods available for a single band:
 > > 
 > > ~~~
-> > methods(class=class(RGB_stack_HARV[1]))
+> > methods(class=class(HARV_stack[1]))
 > > ~~~
 > > {: .language-r}
 > > 
