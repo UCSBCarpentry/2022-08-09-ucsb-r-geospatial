@@ -383,7 +383,7 @@ ggplot() +
 
 <img src="../fig/rmd-02-overlay-hillshade-1.png" title="plot of chunk overlay-hillshade" alt="plot of chunk overlay-hillshade" width="612" style="display: block; margin: auto;" />
 
-> ## Challenge: Create DTM & DSM for SJER
+> ## Challenge: Create DTM & DSM for San Joaquin Ecological Reserve
 > 
 > Use the files in the `data/NEON-DS-Airborne-Remote-Sensing/SJER/` directory to create a Digital
 Terrain Model map and Digital Surface Model map of the San Joaquin Experimental
@@ -404,23 +404,23 @@ Range field site.
 > > # CREATE DSM MAPS
 > > 
 > > # import DSM data
-> > DSM_SJER <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmCrop.tif")
+> > SJER_DSM <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmCrop.tif")
 > > # convert to a df for plotting
-> > DSM_SJER_df <- as.data.frame(DSM_SJER, xy = TRUE)
+> > SJER_DSM_df <- as.data.frame(SJER_DSM, xy = TRUE)
 > > 
 > > # import DSM hillshade
-> > DSM_hill_SJER <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmHill.tif")
+> > SJER_DSM_hill <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmHill.tif")
 > > # convert to a df for plotting
-> > DSM_hill_SJER_df <- as.data.frame(DSM_hill_SJER, xy = TRUE)
+> > SJER_DSM_hill_df <- as.data.frame(SJER_DSM_hill, xy = TRUE)
 > > 
 > > # Build Plot
 > > ggplot() +
-> >     geom_raster(data = DSM_SJER_df , 
+> >     geom_raster(data = SJER_DSM_df , 
 > >                 aes(x = x, y = y, 
 > >                      fill = SJER_dsmCrop,
 > >                      alpha = 0.8)
 > >                 ) + 
-> >     geom_raster(data = DSM_hill_SJER_df, 
+> >     geom_raster(data = SJER_DSM_hill_df, 
 > >                 aes(x = x, y = y, 
 > >                   alpha = SJER_dsmHill)
 > >                 ) +
