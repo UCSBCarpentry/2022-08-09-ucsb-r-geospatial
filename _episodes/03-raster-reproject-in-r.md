@@ -401,27 +401,27 @@ hillshade to produce a nice looking, textured map!
 > > 
 > > ~~~
 > > # import DSM
-> > DSM_SJER <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmCrop.tif")
+> > SJER_DSM <- raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_dsmCrop.tif")
 > > # import DSM hillshade
-> > DSM_hill_SJER_WGS <-
+> > SJER_DSM_hill_WGS <-
 > > raster("data/NEON-DS-Airborne-Remote-Sensing/SJER/DSM/SJER_DSMhill_WGS84.tif")
 > > 
 > > # reproject raster
-> > DTM_hill_UTMZ18N_SJER <- projectRaster(DSM_hill_SJER_WGS,
-> >                                   crs = crs(DSM_SJER),
+> > SJER_DSM_hill_reprojected <- projectRaster(SJER_DSM_hill_WGS,
+> >                                   crs = crs(SJER_DSM),
 > >                                   res = 1)
 > > 
 > > # convert to data.frames
-> > DSM_SJER_df <- as.data.frame(DSM_SJER, xy = TRUE)
+> > SJER_DSM_df <- as.data.frame(SJER_DSM, xy = TRUE)
 > > 
-> > DSM_hill_SJER_df <- as.data.frame(DTM_hill_UTMZ18N_SJER, xy = TRUE)
+> > SJER_DSM_hill_df <- as.data.frame(SJER_DSM_hill_reprojected, xy = TRUE)
 > > 
 > > ggplot() +
-> >      geom_raster(data = DSM_hill_SJER_df, 
+> >      geom_raster(data = SJER_DSM_hill_df, 
 > >                  aes(x = x, y = y, 
 > >                    alpha = SJER_DSMhill_WGS84)
 > >                  ) +
-> >      geom_raster(data = DSM_SJER_df, 
+> >      geom_raster(data = SJER_DSM_df, 
 > >              aes(x = x, y = y, 
 > >                   fill = SJER_dsmCrop,
 > >                   alpha=0.8)
