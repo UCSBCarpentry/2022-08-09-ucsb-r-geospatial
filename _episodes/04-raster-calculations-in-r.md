@@ -386,7 +386,7 @@ Next we need to convert our new object to a data frame for plotting with
 
 
 ~~~
-CHM_ov_HARV_df <- as.data.frame(CHM_ov_HARV, xy = TRUE)
+HARV_CHM_ov_df <- as.data.frame(HARV_CHM_ov, xy = TRUE)
 ~~~
 {: .language-r}
 
@@ -395,7 +395,7 @@ Now we can plot the CHM:
 
 ~~~
  ggplot() +
-   geom_raster(data = CHM_ov_HARV_df, 
+   geom_raster(data = HARV_CHM_ov_df, 
                aes(x = x, y = y, fill = layer)) + 
    scale_fill_gradientn(name = "Canopy Height", colors = terrain.colors(10)) + 
    coord_quickmap()
@@ -423,7 +423,7 @@ a file of the same name.
 
 
 ~~~
-writeRaster(CHM_ov_HARV, "HARV_CHM.tiff",
+writeRaster(HARV_CHM_ov, "HARV_CHM.tiff",
             format="GTiff",
             overwrite=TRUE,
             NAflag=-9999)
