@@ -244,8 +244,8 @@ ggplot() +
 > ## Challenge: Import Line and Point Shapefiles
 > 
 > Using the steps above, import the HARV_roads and HARVtower_UTM18N layers into
-> R. Call the HARV_roads object `lines_HARV` and the HARVtower_UTM18N
-> `point_HARV`.
+> R. Call the HARV_roads object `HARV_lines` and the HARVtower_UTM18N
+> `HARV_points`.
 > 
 > Answer the following questions:
 > 
@@ -283,7 +283,7 @@ ggplot() +
 > > 
 > > 
 > > ~~~
-> > point_HARV <- st_read("data/NEON-DS-Site-Layout-Files/HARV/HARVtower_UTM18N.shp")
+> > HARV_points <- st_read("data/NEON-DS-Site-Layout-Files/HARV/HARVtower_UTM18N.shp")
 > > ~~~
 > > {: .language-r}
 > > 
@@ -318,7 +318,7 @@ ggplot() +
 > > 
 > > 
 > > ~~~
-> > class(point_HARV)
+> > class(HARV_points)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -396,7 +396,7 @@ ggplot() +
 > > 
 > > 
 > > ~~~
-> > st_crs(point_HARV)
+> > st_crs(HARV_points)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -446,7 +446,7 @@ ggplot() +
 > > 
 > > 
 > > ~~~
-> > st_bbox(point_HARV)
+> > st_bbox(HARV_points)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -458,7 +458,7 @@ ggplot() +
 > > ~~~
 > > {: .output}
 > > To see the number of objects in each file, we can look at the output from when we read these objects into R. 
-> > `lines_HARV` contains 13 features (all lines) and `point_HARV` contains only one point. 
+> > `lines_HARV` contains 13 features (all lines) and `HARV_points` contains only one point. 
 > {: .solution}
 {: .challenge}
 

@@ -51,12 +51,12 @@ we can view metadata associated with an R object using:
 of the object.
 * `st_crs()` - The CRS (spatial projection) of the data.
 
-We started to explore our `point_HARV` object in the previous episode.
-To see a summary of all of the metadata associated with our `point_HARV` object, we can view the object with `View(point_HARV)` or print a summary of the object itself to the console.
+We started to explore our `HARV_points` object in the previous episode.
+To see a summary of all of the metadata associated with our `HARV_points` object, we can view the object with `View(HARV_points)` or print a summary of the object itself to the console.
 
 
 ~~~
-point_HARV
+HARV_points
 ~~~
 {: .language-r}
 
@@ -81,7 +81,7 @@ We can use the `ncol` function to count the number of attributes associated with
 
 
 ~~~
-ncol(lines_HARV)
+ncol(HARV_lines)
 ~~~
 {: .language-r}
 
@@ -97,7 +97,7 @@ We can view the individual name of each attribute using the
 
 
 ~~~
-names(lines_HARV)
+names(HARV_lines)
 ~~~
 {: .language-r}
 
@@ -116,7 +116,7 @@ of attribute values using the `head()` function to get a preview of the data:
 
 
 ~~~
-head(lines_HARV)
+head(HARV_lines)
 ~~~
 {: .language-r}
 
@@ -161,11 +161,11 @@ Projected CRS: WGS 84 / UTM zone 18N
 
 > ## Challenge: Attributes for Different Spatial Classes
 >
-> Explore the attributes associated with the `point_HARV` and `aoi_boundary_HARV` spatial objects.
+> Explore the attributes associated with the `HARV_points` and `aoi_boundary_HARV` spatial objects.
 >
 > 1. How many attributes does each have?
-> 2. Who owns the site in the `point_HARV` data object?
-> 3. Which of the following is NOT an attribute of the `point_HARV` data object?
+> 2. Who owns the site in the `HARV_points` data object?
+> 3. Which of the following is NOT an attribute of the `HARV_points` data object?
 >
 >     A) Latitude      B) County     C) Country
 >
@@ -174,7 +174,7 @@ Projected CRS: WGS 84 / UTM zone 18N
 > > 
 > > 
 > > ~~~
-> > ncol(point_HARV)
+> > ncol(HARV_points)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -201,7 +201,7 @@ Projected CRS: WGS 84 / UTM zone 18N
 > > 2) Ownership information is in a column named `Ownership`: 
 > > 
 > > ~~~
-> > point_HARV$Ownership
+> > HARV_points$Ownership
 > > ~~~
 > > {: .language-r}
 > > 
@@ -215,7 +215,7 @@ Projected CRS: WGS 84 / UTM zone 18N
 > > `names()` function: 
 > > 
 > > ~~~
-> > names(point_HARV)
+> > names(HARV_points)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -240,7 +240,7 @@ We can see the contents of the `TYPE` field of our lines feature:
 
 
 ~~~
-lines_HARV$TYPE
+HARV_lines$TYPE
 ~~~
 {: .language-r}
 
@@ -260,7 +260,7 @@ within R is factor. We worked with factors a little bit in [an earlier lesson](h
 
 
 ~~~
-levels(lines_HARV$TYPE)
+levels(HARV_lines$TYPE)
 ~~~
 {: .language-r}
 
@@ -279,9 +279,9 @@ For example, we might be interested only in features that are of `TYPE` "footpat
 
 
 ~~~
-footpath_HARV <- lines_HARV %>% 
+HARV_footpath <- HARV_lines %>% 
   filter(TYPE == "footpath")
-nrow(footpath_HARV)
+nrow(HARV_footpath)
 ~~~
 {: .language-r}
 
@@ -299,7 +299,7 @@ that only two feature lines in our spatial object have the attribute
 
 ~~~
 ggplot() + 
-  geom_sf(data = footpath_HARV) +
+  geom_sf(data = HARV_footpath) +
   ggtitle("NEON Harvard Forest Field Site", subtitle = "Footpaths") + 
   coord_sf()
 ~~~
@@ -319,7 +319,7 @@ connecting line thickness to a data variable.
 
 ~~~
 ggplot() + 
-  geom_sf(data = footpath_HARV, aes(color = factor(OBJECTID)), size = 1.5) +
+  geom_sf(data = HARV_footpath, aes(color = factor(OBJECTID)), size = 1.5) +
   labs(color = 'Footpath ID') +
   ggtitle("NEON Harvard Forest Field Site", subtitle = "Footpaths") + 
   coord_sf()
@@ -339,7 +339,7 @@ Now, we see that there are in fact two features in our plot!
 > > First we will save an object with only the boardwalk lines:
 > > 
 > > ~~~
-> > boardwalk_HARV <- lines_HARV %>% 
+> > boardwalk_HARV <- HARV_lines %>% 
 > >   filter(TYPE == "boardwalk")
 > > ~~~
 > > {: .language-r}
@@ -380,7 +380,7 @@ Now, we see that there are in fact two features in our plot!
 > > and check the number of features: 
 > > 
 > > ~~~
-> > stoneWall_HARV <- lines_HARV %>% 
+> > stoneWall_HARV <- HARV_lines %>% 
 > >   filter(TYPE == "stone wall")
 > > nrow(stoneWall_HARV)
 > > ~~~
@@ -425,7 +425,7 @@ First we will check how many unique levels our factor has:
 
 
 ~~~
-levels(lines_HARV$TYPE)
+levels(HARV_lines$TYPE)
 ~~~
 {: .language-r}
 
@@ -450,7 +450,7 @@ We can tell `ggplot` to use these colors when we plot the data.
 
 ~~~
 ggplot() +
-  geom_sf(data = lines_HARV, aes(color = TYPE)) + 
+  geom_sf(data = HARV_lines, aes(color = TYPE)) + 
   scale_color_manual(values = road_colors) +
   labs(color = 'Road Type') +
   ggtitle("NEON Harvard Forest Field Site", subtitle = "Roads & Trails") + 
@@ -464,7 +464,7 @@ ggplot() +
 We adjusted line width universally earlier. If we want a unique line width for each factor level or attribute category
 in our spatial object, we can use the same syntax that we used for colors, above.
 
-We already know that we have four different `TYPE` levels in the lines_HARV object, so we will set four different line widths.
+We already know that we have four different `TYPE` levels in the HARV_lines object, so we will set four different line widths.
 
 
 ~~~
@@ -477,7 +477,7 @@ We can use those line widths when we plot the data.
 
 ~~~
 ggplot() +
-  geom_sf(data = lines_HARV, aes(color = TYPE, size = TYPE)) + 
+  geom_sf(data = HARV_lines, aes(color = TYPE, size = TYPE)) + 
   scale_color_manual(values = road_colors) +
   labs(color = 'Road Type') +
   scale_size_manual(values = line_widths) +
@@ -512,7 +512,7 @@ Note that we could also use `aes(size = TYPE)` to tie the line thickness to the 
 > >
 > > 
 > > ~~~
-> > levels(lines_HARV$TYPE)
+> > levels(HARV_lines$TYPE)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -537,7 +537,7 @@ Note that we could also use `aes(size = TYPE)` to tie the line thickness to the 
 > > 
 > > ~~~
 > > ggplot() +
-> >   geom_sf(data = lines_HARV, aes(size = TYPE)) +
+> >   geom_sf(data = HARV_lines, aes(size = TYPE)) +
 > >   scale_size_manual(values = line_width) +
 > >   ggtitle("NEON Harvard Forest Field Site", subtitle = "Roads & Trails - Line width varies") + 
 > >   coord_sf()
@@ -557,7 +557,7 @@ elements to specify labels and colors:
 * `bottomright`: We specify the location of our legend by using a default
 keyword. We could also use `top`, `topright`, etc.
 * `levels(objectName$attributeName)`: Label the legend elements using the
-categories of levels in an attribute (e.g., levels(lines_HARV$TYPE) means use
+categories of levels in an attribute (e.g., levels(HARV_lines$TYPE) means use
 the levels boardwalk, footpath, etc).
 * `fill =`: apply unique colors to the boxes in our legend. `palette()` is
 the default set of colors that R applies to all plots.
@@ -569,7 +569,7 @@ appearance of our legend by manually setting different parameters.
 
 ~~~
 ggplot() + 
-  geom_sf(data = lines_HARV, aes(color = TYPE), size = 1.5) +
+  geom_sf(data = HARV_lines, aes(color = TYPE), size = 1.5) +
   scale_color_manual(values = road_colors) +
   labs(color = 'Road Type') + 
   ggtitle("NEON Harvard Forest Field Site", 
@@ -588,7 +588,7 @@ We can change the appearance of our legend by manually setting different paramet
 
 ~~~
 ggplot() + 
-  geom_sf(data = lines_HARV, aes(color = TYPE), size = 1.5) +
+  geom_sf(data = HARV_lines, aes(color = TYPE), size = 1.5) +
   scale_color_manual(values = road_colors) + 
   labs(color = 'Road Type') +
   theme(legend.text = element_text(size = 20), 
@@ -606,7 +606,7 @@ ggplot() +
 new_colors <- c("springgreen", "blue", "magenta", "orange")
 
 ggplot() + 
-  geom_sf(data = lines_HARV, aes(color = TYPE), size = 1.5) + 
+  geom_sf(data = HARV_lines, aes(color = TYPE), size = 1.5) + 
   scale_color_manual(values = new_colors) +
   labs(color = 'Road Type') +
   theme(legend.text = element_text(size = 20), 
@@ -631,7 +631,7 @@ ggplot() +
 > Create a plot that emphasizes only roads where bicycles and horses are allowed.
 > To emphasize this, make the lines where bicycles are not allowed THINNER than
 > the roads where bicycles are allowed.
-> NOTE: this attribute information is located in the `lines_HARV$BicyclesHo`
+> NOTE: this attribute information is located in the `HARV_lines$BicyclesHo`
 > attribute.
 > 
 > Be sure to add a title and legend to your map. You might consider a color
@@ -645,7 +645,7 @@ ggplot() +
 > >
 > > 
 > > ~~~
-> > class(lines_HARV$BicyclesHo)
+> > class(HARV_lines$BicyclesHo)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -659,7 +659,7 @@ ggplot() +
 > > 
 > > 
 > > ~~~
-> > levels(lines_HARV$BicyclesHo)
+> > levels(HARV_lines$BicyclesHo)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -674,7 +674,7 @@ ggplot() +
 > >
 > > 
 > > ~~~
-> > lines_removeNA <- lines_HARV[!is.na(lines_HARV$BicyclesHo),] 
+> > lines_removeNA <- HARV_lines[!is.na(HARV_lines$BicyclesHo),] 
 > > ~~~
 > > {: .language-r}
 > >
@@ -689,7 +689,7 @@ ggplot() +
 > > 
 > > # Next, visualise using ggplot
 > > ggplot() + 
-> >   geom_sf(data = lines_HARV) + 
+> >   geom_sf(data = HARV_lines) + 
 > >   geom_sf(data = lines_showHarv, aes(color = BicyclesHo), size = 2) + 
 > >   scale_color_manual(values = "magenta") +
 > >   ggtitle("NEON Harvard Forest Field Site", subtitle = "Roads Where Bikes and Horses Are Allowed") + 

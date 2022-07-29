@@ -57,10 +57,10 @@ that new object:
 
 
 ~~~
-plot_locations_HARV <-
+HARV_HARV_plot_locations <-
   read.csv("data/NEON-DS-Site-Layout-Files/HARV/HARV_PlotLocations.csv")
 
-str(plot_locations_HARV)
+str(HARV_plot_locations)
 ~~~
 {: .language-r}
 
@@ -97,7 +97,7 @@ Let's check out the column names of our dataframe.
 
 
 ~~~
-names(plot_locations_HARV)
+names(HARV_plot_locations)
 ~~~
 {: .language-r}
 
@@ -113,13 +113,13 @@ names(plot_locations_HARV)
 
 ## Identify X,Y Location Columns
 
-Our column names include several fields that might contain spatial information. The `plot_locations_HARV$easting`
-and `plot_locations_HARV$northing` columns contain coordinate values. We can confirm
+Our column names include several fields that might contain spatial information. The `HARV_plot_locations$easting`
+and `HARV_plot_locations$northing` columns contain coordinate values. We can confirm
 this by looking at the first six rows of our data.
 
 
 ~~~
-head(plot_locations_HARV$easting)
+head(HARV_plot_locations$easting)
 ~~~
 {: .language-r}
 
@@ -133,7 +133,7 @@ head(plot_locations_HARV$easting)
 
 
 ~~~
-head(plot_locations_HARV$northing)
+head(HARV_plot_locations$northing)
 ~~~
 {: .language-r}
 
@@ -161,7 +161,7 @@ Following the `easting` and `northing` columns, there is a `geodeticDa` and a
 
 
 ~~~
-head(plot_locations_HARV$geodeticDa)
+head(HARV_plot_locations$geodeticDa)
 ~~~
 {: .language-r}
 
@@ -175,7 +175,7 @@ head(plot_locations_HARV$geodeticDa)
 
 
 ~~~
-head(plot_locations_HARV$utmZone)
+head(HARV_plot_locations$utmZone)
 ~~~
 {: .language-r}
 
@@ -337,7 +337,7 @@ We will use the `st_as_sf()` function to perform the conversion.
 
 
 ~~~
-plot_locations_sp_HARV <- st_as_sf(plot_locations_HARV, coords = c("easting", "northing"), crs = utm18nCRS)
+HARV_plot_locations_sp <- st_as_sf(HARV_plot_locations, coords = c("easting", "northing"), crs = utm18nCRS)
 ~~~
 {: .language-r}
 
@@ -345,7 +345,7 @@ We should double check the CRS to make sure it is correct.
 
 
 ~~~
-st_crs(plot_locations_sp_HARV)
+st_crs(HARV_plot_locations_sp)
 ~~~
 {: .language-r}
 
@@ -398,7 +398,7 @@ We now have a spatial R object, we can plot our newly created spatial object.
 
 ~~~
 ggplot() +
-  geom_sf(data = plot_locations_sp_HARV) +
+  geom_sf(data = HARV_plot_locations_sp) +
   ggtitle("Map of Plot Locations")
 ~~~
 {: .language-r}
@@ -417,7 +417,7 @@ of the plot. To show this, let's plot our `aoi_boundary_HARV` object with our ve
 ~~~
 ggplot() +
   geom_sf(data = aoi_boundary_HARV) +
-  geom_sf(data = plot_locations_sp_HARV) +
+  geom_sf(data = HARV_plot_locations_sp) +
   ggtitle("AOI Boundary Plot")
 ~~~
 {: .language-r}
@@ -451,9 +451,9 @@ That's really handy!
 > >
 > > 
 > > ~~~
-> > newplot_locations_HARV <-
+> > newHARV_plot_locations <-
 > >   read.csv("data/NEON-DS-Site-Layout-Files/HARV/HARV_2NewPhenPlots.csv")
-> > str(newplot_locations_HARV)
+> > str(newHARV_plot_locations)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -518,7 +518,7 @@ That's really handy!
 > >
 > > 
 > > ~~~
-> > newPlot.Sp.HARV <- st_as_sf(newplot_locations_HARV, coords = c("decimalLon", "decimalLat"), crs = geogCRS)
+> > newPlot.Sp.HARV <- st_as_sf(newHARV_plot_locations, coords = c("decimalLon", "decimalLat"), crs = geogCRS)
 > > ~~~
 > > {: .language-r}
 > >
@@ -562,7 +562,7 @@ That's really handy!
 > > 
 > > ~~~
 > > ggplot() +
-> >   geom_sf(data = plot_locations_sp_HARV, color = "orange") +
+> >   geom_sf(data = HARV_plot_locations_sp, color = "orange") +
 > >   geom_sf(data = newPlot.Sp.HARV, color = "lightblue") +
 > >   ggtitle("Map of All Plot Locations")
 > > ~~~
@@ -577,7 +577,7 @@ That's really handy!
 We can write an R spatial object to a shapefile using the `st_write` function
 in `sf`. To do this we need the following arguments:
 
-* the name of the spatial object (`plot_locations_sp_HARV`)
+* the name of the spatial object (`HARV_plot_locations_sp`)
 * the directory where we want to save our shapefile
            (to use `current = getwd()` or you can specify a different path)
 * the name of the new shapefile  (`PlotLocations_HARV`)
@@ -587,7 +587,7 @@ We can now export the spatial object as a shapefile.
 
 
 ~~~
-st_write(plot_locations_sp_HARV,
+st_write(HARV_plot_locations_sp,
          "data/PlotLocations_HARV.shp", driver = "ESRI Shapefile")
 ~~~
 {: .language-r}

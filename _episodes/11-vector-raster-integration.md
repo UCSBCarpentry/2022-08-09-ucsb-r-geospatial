@@ -75,7 +75,7 @@ To illustrate this, we will crop the Canopy Height Model (CHM) to only include t
 
 ~~~
 ggplot() +
-  geom_raster(data = CHM_HARV_df, aes(x = x, y = y, fill = HARV_chmCrop)) + 
+  geom_raster(data = HARV_CHM_df, aes(x = x, y = y, fill = HARV_chmCrop)) + 
   scale_fill_gradientn(name = "Canopy Height", colors = terrain.colors(10)) +
   geom_sf(data = aoi_boundary_HARV, color = "blue", fill = NA) +
   coord_sf()
@@ -91,7 +91,7 @@ that falls within the boundaries of the AOI.
 
 
 ~~~
-CHM_HARV_Cropped <- crop(x = CHM_HARV, y = aoi_boundary_HARV)
+HARV_CHM_Cropped <- crop(x = HARV_CHM, y = aoi_boundary_HARV)
 ~~~
 {: .language-r}
 
@@ -104,12 +104,12 @@ coordinates into a polygon that we can plot:
 
 
 ~~~
-CHM_HARV_Cropped_df <- as.data.frame(CHM_HARV_Cropped, xy = TRUE)
+HARV_CHM_Cropped_df <- as.data.frame(HARV_CHM_Cropped, xy = TRUE)
 
 ggplot() +
-  geom_sf(data = st_as_sfc(st_bbox(CHM_HARV)), fill = "green",
+  geom_sf(data = st_as_sfc(st_bbox(HARV_CHM)), fill = "green",
           color = "green", alpha = .2) +  
-  geom_raster(data = CHM_HARV_Cropped_df,
+  geom_raster(data = HARV_CHM_Cropped_df,
               aes(x = x, y = y, fill = HARV_chmCrop)) + 
   scale_fill_gradientn(name = "Canopy Height", colors = terrain.colors(10)) + 
   coord_sf()
@@ -126,7 +126,7 @@ below).
 
 ~~~
 ggplot() +
-  geom_raster(data = CHM_HARV_Cropped_df,
+  geom_raster(data = HARV_CHM_Cropped_df,
               aes(x = x, y = y, fill = HARV_chmCrop)) + 
   geom_sf(data = aoi_boundary_HARV, color = "blue", fill = NA) + 
   scale_fill_gradientn(name = "Canopy Height", colors = terrain.colors(10)) + 
@@ -140,7 +140,7 @@ We can look at the extent of all of our other objects for this field site.
 
 
 ~~~
-st_bbox(CHM_HARV)
+st_bbox(HARV_CHM)
 ~~~
 {: .language-r}
 
@@ -155,7 +155,7 @@ st_bbox(CHM_HARV)
 
 
 ~~~
-st_bbox(CHM_HARV_Cropped)
+st_bbox(HARV_CHM_Cropped)
 ~~~
 {: .language-r}
 
@@ -210,7 +210,7 @@ Canopy Height Model information.
 > > 
 > > 
 > > ~~~
-> > CHM_plots_HARVcrop <- crop(x = CHM_HARV, y = plot_locations_sp_HARV)
+> > CHM_plots_HARVcrop <- crop(x = HARV_CHM, y = plot_locations_sp_HARV)
 > > 
 > > CHM_plots_HARVcrop_df <- as.data.frame(CHM_plots_HARVcrop, xy = TRUE)
 > > 
@@ -278,7 +278,7 @@ our raster to this extent object.
 
 
 ~~~
-CHM_HARV_manual_cropped <- crop(x = CHM_HARV, y = new_extent)
+HARV_CHM_manual_cropped <- crop(x = HARV_CHM, y = new_extent)
 ~~~
 {: .language-r}
 
@@ -286,7 +286,7 @@ To plot this data using `ggplot()` we need to convert it to a dataframe.
 
 
 ~~~
-CHM_HARV_manual_cropped_df <- as.data.frame(CHM_HARV_manual_cropped, xy = TRUE)
+HARV_CHM_manual_cropped_df <- as.data.frame(HARV_CHM_manual_cropped, xy = TRUE)
 ~~~
 {: .language-r}
 
@@ -296,7 +296,7 @@ Now we can plot this cropped data. We will show the AOI boundary on the same plo
 ~~~
 ggplot() + 
   geom_sf(data = aoi_boundary_HARV, color = "blue", fill = NA) +
-  geom_raster(data = CHM_HARV_manual_cropped_df,
+  geom_raster(data = HARV_CHM_manual_cropped_df,
               aes(x = x, y = y, fill = HARV_chmCrop)) + 
   scale_fill_gradientn(name = "Canopy Height", colors = terrain.colors(10)) + 
   coord_sf()
@@ -327,7 +327,7 @@ Forest field site.
 
 
 ~~~
-tree_height <- extract(x = CHM_HARV, y = aoi_boundary_HARV, df = TRUE)
+tree_height <- extract(x = HARV_CHM, y = aoi_boundary_HARV, df = TRUE)
 
 str(tree_height)
 ~~~
@@ -399,7 +399,7 @@ not use the `df = TRUE` argument.
 
 
 ~~~
-mean_tree_height_AOI <- extract(x = CHM_HARV, y = aoi_boundary_HARV, fun = mean)
+mean_tree_height_AOI <- extract(x = HARV_CHM, y = aoi_boundary_HARV, fun = mean)
 
 mean_tree_height_AOI
 ~~~
@@ -434,7 +434,7 @@ will not use the `df = TRUE` argument.
 
 
 ~~~
-mean_tree_height_tower <- extract(x = CHM_HARV,
+mean_tree_height_tower <- extract(x = HARV_CHM,
                                   y = point_HARV,
                                   buffer = 20,
                                   fun = mean)
@@ -465,7 +465,7 @@ mean_tree_height_tower
 > > 
 > > ~~~
 > > # extract data at each plot location
-> > mean_tree_height_plots_HARV <- extract(x = CHM_HARV,
+> > mean_tree_height_plots_HARV <- extract(x = HARV_CHM,
 > >                                        y = plot_locations_sp_HARV,
 > >                                        buffer = 20,
 > >                                        fun = mean,
