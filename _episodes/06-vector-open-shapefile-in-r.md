@@ -262,7 +262,7 @@ ggplot() +
 > > First we import the data: 
 > > 
 > > ~~~
-> > lines_HARV <- st_read("data/NEON-DS-Site-Layout-Files/HARV/HARV_roads.shp")
+> > HARV_lines <- st_read("data/NEON-DS-Site-Layout-Files/HARV/HARV_roads.shp")
 > > ~~~
 > > {: .language-r}
 > > 
@@ -304,7 +304,7 @@ ggplot() +
 > > Then we check its class: 
 > > 
 > > ~~~
-> > class(lines_HARV)
+> > class(HARV_lines)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -331,7 +331,7 @@ ggplot() +
 > > We also check the CRS and extent of each object: 
 > > 
 > > ~~~
-> > st_crs(lines_HARV)
+> > st_crs(HARV_lines)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -381,7 +381,7 @@ ggplot() +
 > > 
 > > 
 > > ~~~
-> > st_bbox(lines_HARV)
+> > st_bbox(HARV_lines)
 > > ~~~
 > > {: .language-r}
 > > 
@@ -458,7 +458,7 @@ ggplot() +
 > > ~~~
 > > {: .output}
 > > To see the number of objects in each file, we can look at the output from when we read these objects into R. 
-> > `lines_HARV` contains 13 features (all lines) and `HARV_points` contains only one point. 
+> > `HARV_lines` contains 13 features (all lines) and `HARV_points` contains only one point. 
 > {: .solution}
 {: .challenge}
 
