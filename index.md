@@ -286,12 +286,13 @@ pre-requisites
 > If you cannot get the map to draw, please contact
 > us!
 >
-> 1. Download this [Data and test files](https://drive.google.com/file/d/19y6-R_mob8Nij-ItWW5Iaf7ulvqFVP_w/view?usp=sharing).
+> 1. Download this [Data and test files zip](https://drive.google.com/file/d/19y6-R_mob8Nij-ItWW5Iaf7ulvqFVP_w/view?usp=sharing).
 > 2. Unzip the files on your local computer.
-> 3. Log into  [LSIT's RStudio](https://carpentryworkshop.lsit.ucsb.edu/) with your UCSBnetID. Please contact us if you do not have a UCSBnetID. 
-> 4. Select the server option "R/RStudio Carpentry". This should open RStudio on your browser. If this does not, please check if your browser is up-to-date. IF you would like to use your local RStudio in the workshop, and not this RStudio image, **please complete the [setup page](https://ucsbcarpentry.github.io/2022-08-09-ucsb-r-geospatial/setup.html)**. Afterwards, follow the next steps using your RStudio.
-> 5. Upload the `InstallTest` folder to RStudio.
-> 6. Run `InstallTest.r`. After the script runs, you should have five objects in your environment and a map in your plots pane. The map will take a moment to draw.
+> 3. Log into  [LSIT's RStudio](https://carpentryworkshop.lsit.ucsb.edu/) with your UCSBnetID. Please contact us 
+> if you do not have a UCSBnetID. (if you are using your own RStudio, please
+> run the test file locally!)
+> 4. Upload the `InstallTest` folder to RStudio.
+> 5. Run `InstallTest.r`. After the script runs, you should have five objects in your environment and a map in your plots pane. The map will take a moment to draw.
 >
 > If you cannot get the map to draw, please contact us!!!
 >
@@ -422,5 +423,7 @@ please preview your site before committing, and make sure to run
 'tools/check' as well.
 {% endcomment %}
 
-<h2 id="setup">Setup</h2>
-<strong>Please refer to the [setup page](https://ucsbcarpentry.github.io/2022-08-09-ucsb-r-geospatial/setup.html)</strong> for instructions on what you need to do in order to be ready for this workshop.
+<h2 id="setup">Setup</h2> <strong>Please refer to the [setup 
+page](https://ucsbcarpentry.github.io/2022-08-09-ucsb-r-geospatial/setup.html)</strong> 
+for complete instructions on what you need to do in order to be ready for this 
+workshop.
