@@ -31,9 +31,14 @@ You can download all of the data used in this workshop by clicking
 Clicking the download link will automatically download all of the files 
 to your default download directory as a single compressed (`.zip`) file. 
 To unzip this file, double click the folder icon in your file navigator 
-application (for Macs, this is the Finder application).
+application (for Macs, this is the Finder application). Inside are 4 more
+zip archives. Each of these 4 also need to be unzipped!
 
 For a full description of the data used in this workshop see the [data page](https://github.com/datacarpentry/geospatial-workshop/blob/gh-pages/data).
+
+If you are using our cloud LSIT RStudio, unzip the data folder **and also
+unzip the four folders inside of it!** Upload these four folders
+to your online RStudio.
 
 ## Zoom Install and Update
 {% include install_instructions/videoconferencing.html %}
