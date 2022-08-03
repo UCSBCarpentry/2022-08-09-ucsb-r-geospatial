@@ -292,9 +292,9 @@ Edit the text to match who can attend the workshop. For instance:
 >
 > 1. Download this [zip archive](https://drive.google.com/file/d/19y6-R_mob8Nij-ItWW5Iaf7ulvqFVP_w/view?usp=sharing).
 > 2. Extract the files to your local computer.
-> 3. Log into this [locally hosted image of RStudio]() with your UCSBnetID. Please contact us if you do not have a UCSBnetID.
+> 3. Log into this [locally hosted image of RStudio](https://carpentryworkshop.lsit.ucsb.edu/) with your UCSBnetID. Please contact us if you do not have a UCSBnetID. 
 > 4. Select the server option "R/RStudio Carpentry". This should open RStudio on your browser. If this does not, please check if your browser is up-to-date.
-> 5. Upload the previously extracted files into RStudio.
+> 5. Upload the previously extracted files into RStudio. IF you would like to use your local RStudio in the workshop, and not this RStudio image, **please complete the [setup page](https://ucsbcarpentry.github.io/2022-08-09-ucsb-r-geospatial/setup.html)**. Afterwards, follow the next step using your RStudio.
 > 6. Run the r script "InstallTest.r". After the script runs, you should have five objects in your environment and a map in your plots pane. The map will take a moment to draw.
 > 7. Email the map to library-collaboratory@ucsb.edu to complete your registration.
 >
