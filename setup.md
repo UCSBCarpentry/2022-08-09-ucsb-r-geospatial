@@ -1,6 +1,17 @@
 # Overview
 
-You will need to download the data we use in the workshop, and have an up-to-date browser. If you are attending this workshop remotely, please also install/update the Zoom video conferencing application.  For this workshop, we will be using a hosted instance of RStudio that comes with all the necessary packages. <strong>You will not need to install anything for the workshop.</strong> We suggest that you utilize our provided environment. If you would like to go through the workshop with your local RStudio instead, you may follow the below instructions.
+- You will need to download the data we use in the workshop, and have an 
+up-to-date browser. 
+- If you are attending this workshop remotely, please 
+also install/update the Zoom video conferencing application.  
+-For this 
+workshop, we have [a cloud instance of RStudio](https://carpentryworkshop.lsit.ucsb.edu/) 
+that comes with 
+all the necessary packages. You will not need to install 
+anything for the workshop.
+-If you would like to go through the workshop with 
+your local RStudio instead, you may follow the below instructions, make sure
+to follow the instructions for setting up GDAL and the Spatial Extensions below.
 
 ## Data (Required)
 
@@ -18,21 +29,30 @@ For a full description of the data used in this workshop see the [data page](htt
 
 ### Software
 
+** You should already have **
 | Software | Install | Manual | Available for | Description |
 | -------- | ------------ | ------ | ------------- | ----------- |
-| [GDAL](http://www.gdal.org) | [Link](https://gdal.org/download.html) | [Link](https://gdal.org) | Linux, MacOS, Windows | Geospatial model for reading and writing a variety of formats |
-| [GEOS](https://trac.osgeo.org/geos) | [Link](https://trac.osgeo.org/geos) | [Link](http://geos.osgeo.org/doxygen/) | Linux, MacOS, Windows | Geometry models and operations |
-| [PROJ.4](http://proj4.org) | [Link](http://proj4.org/install.html)| [Link](http://proj4.org/index.html)| Linux, MacOS, Windows | Coordinate reference system transformations |
 | [R](https://www.r-project.org) | [Link](https://cloud.r-project.org) | [Link](https://cloud.r-project.org) | Linux, MacOS, Windows | Software environment for statistical and scientific computing |
 | [RStudio](https://www.rstudio.com) | [Link](https://www.rstudio.com/products/rstudio/download/#download) | | Linux, MacOS, Windows | GUI for R |
-| [UDUNITS](https://www.unidata.ucar.edu/software/udunits/) | [Link](https://www.unidata.ucar.edu/downloads/udunits/index.jsp) | [Link](https://www.unidata.ucar.edu/software/udunits/#documentation) | Linux, MacOS, Windows | Unit conversions |
 
-We provide quick instructions below for installing the various software needed for this workshop. At points, they assume familiarity with the command line and with installation in general. As there are different operating systems and many different versions of operating systems and environments, these may not work on your computer. If an installation doesn't work for you, please refer to the installation instructions for that software listed in the table above.
+Please update your base R to at least 4.1.1!
+
+We provide quick instructions below for installing the various software 
+needed for this workshop. At points, they assume familiarity with the 
+command line and with installation in general. As there are different 
+operating systems and many different versions of operating systems and 
+environments, these may not work on your computer. If an installation 
+doesn't work for you, please use our [LSIT Cloud RStudio](https://carpentryworkshop.lsit.ucsb.edu/)
 
 
-### GDAL, GEOS, and PROJ.4
+### GDAL and the Spatial Extensions
 
-The installation of the geospatial libraries GDAL, GEOS, and PROJ.4 varies significantly based on operating system. These are all dependencies for `sf`, the `R` package that we will be using for spatial data operations throughout this workshop.
+The installation of the geospatial libraries GDAL, GEOS, and PROJ.4 
+varies significantly based on operating system. These are all 
+dependencies for `sf`, the `R` package that we will be using for spatial 
+data operations throughout this workshop.
+
+Mac users beware!
 
 > ## Windows
 >
@@ -42,9 +62,23 @@ The installation of the geospatial libraries GDAL, GEOS, and PROJ.4 varies signi
 
 > ## macOS - Install with Packages (Beginner)
 >
-> The simplest way to install these geospatial libraries is to install the latest version of [Kyng Chaos's pre-built package](http://www.kyngchaos.com/software/frameworks) for GDAL Complete. Be aware that several other libraries are also installed, including the UnixImageIO, SQLite3, and `NumPy`.  Please install all items in the package.
+> If you have installed software such as QGIS or GRASS, you may
+> already have most of these dependancies taken care of.
 >
-> After downloading the package in the link above, you will need to double-click the cardbord box icon to complete the installation. Depending on your security settings, you may get a warning message about "unidentified developers", but you may continue with the installation. Please [contact us](mailto:library-collaboratory@ucsb.edu) or attend the workshop install party if you need help enabling the installation.
+> You may or may not need to install various underlying components
+> of GDAL. You can get everytin in one package by installin 
+> the latest version of [Kyng Chaos's pre-built 
+> package for GDAL Complete](http://www.kyngchaos.com/software/frameworks). Be aware that several other libraries are also installed, 
+> including the UnixImageIO, SQLite3, and `NumPy`.  Please install all 
+> items in the package.
+>
+> After downloading the package in the link above, you will need to 
+> double-click the cardbord box icon to complete the installation. 
+> Depending on your security settings, you may get a warning message 
+> about "unidentified developers", but you may continue with the 
+> installation. Please [contact 
+> us](mailto:library-collaboratory@ucsb.edu) or attend the workshop 
+> install party if you need help enabling the installation.
 >
 {: .solution}
 
