@@ -274,19 +274,11 @@ Edit the text to match who can attend the workshop. For instance:
 
 <hr/>
 
-<h2>Complete Registration</h2>
-<p>
-  To participate in this
-  {% if site.carpentry == "swc" %}
-  Software Carpentry
-  {% elsif site.carpentry == "dc" %}
-  Data Carpentry
-  {% elsif site.carpentry == "lc" %}
-  Library Carpentry
-  {% endif %}
-  workshop,
-  you will need access to complete your registration by following the steps below. <strong>Please complete these steps before end-of-day August 5, 2022 PST</strong>- the Friday before the workshop.
-</p>
+# Important: Before the Workshop!
+Setup is especially important for this workshop!
+We suggest completing these steps before end-of-day August 5, 
+
+** Complete instructions ** are on the [setup page](setup)
 
 > ## Steps for Completing Workshop Registration
 >
