@@ -1,19 +1,27 @@
 # Overview
 
-- You will need to download the data we use in the workshop, and have an 
-up-to-date browser. 
-- If you are attending this workshop remotely, please 
-also install/update the Zoom video conferencing application.  
-- For this 
+1.  Download the data we use in the workshop, and have an 
+up-to-date web browser. 
+
+1. If you are attending this workshop remotely, please 
+install/update the Zoom video conferencing application.  
+
+1. For this 
 workshop, we are using a [cloud instance of 
 RStudio provided by LSIT](https://carpentryworkshop.lsit.ucsb.edu/) 
 that comes with 
 all the necessary packages. If you choose this option, you will not need to install 
 anything for the workshop. You only need to sign on with your 
 UCSBnetID and upload the data.
--If you would like to go through the workshop with 
+
+1. If you would like to go through the workshop with 
 your local RStudio instead, you may follow the below instructions, make sure
 to follow the instructions for setting up GDAL and the Spatial Extensions!
+
+1. Make sure you can make the test map below by running the .r script
+that came along with the data files. If you cannot make this map appear
+in R, make sure you have the spatial components configured correctly and
+ask for help!
 
 ## Data (Required)
 
@@ -30,9 +38,9 @@ For a full description of the data used in this workshop see the [data page](htt
 ## Zoom Install and Update
 {% include install_instructions/videoconferencing.html %}
 
-### Software
+## Software
 
-** You should already have **
+You should already have R and R Studio
 
 | Software | Install | Manual | Available for | Description |
 | -------- | ------------ | ------ | ------------- | ----------- |
@@ -48,8 +56,33 @@ operating systems and many different versions of operating systems and
 environments, these may not work on your computer. If an installation 
 doesn't work for you, please use our [LSIT Cloud RStudio](https://carpentryworkshop.lsit.ucsb.edu/)
 
+### R
 
-### GDAL and the Spatial Extensions
+Participants who do not already have `R` installed should download and install it.
+
+> ## Windows
+>
+>To install `R`, Windows users should select "Download R for Windows" from RStudio and CRAN's [cloud download page](https://cloud.r-project.org), which will automatically detect a CRAN mirror for you to use. Select the `base` subdirectory after choosing the Windows download page. A `.exe` executable file containing the necessary components of base R can be downloaded by clicking on "Download R 3.x.x for Windows".
+>
+{: .solution}
+
+> ## macOS
+>
+>To install `R`, macOS users should select "Download R for (Mac) OS X" from RStudio and CRAN's [cloud download page](https://cloud.r-project.org), which will automatically detect a CRAN mirror for you to use. A `.pkg` file containing the necessary components of base R can be downloaded by clicking on the first available link (this will be the most recent), which will read `R-3.x.x.pkg`.
+>
+{: .solution}
+
+> ## Linux
+>
+>To install `R`, Linux users should select "Download R for Linux" from RStudio and CRAN's [cloud download page](https://cloud.r-project.org), which will automatically detect a CRAN mirror for you to use. Instructions for a number of different Linux operating systems are available.
+>
+{: .solution}
+
+### RStudio
+
+RStudio is a GUI for using `R` that is available for Windows, macOS, and various Linux operating systems. It can be downloaded [here](https://www.rstudio.com/products/rstudio/download/). You will need the **free** Desktop version for your computer. *In order to address issues with `ggplot2`, learners and instructors should run a recent version of RStudio (v1.2 or greater).*
+
+## GDAL and the Spatial Extensions
 
 The installation of the geospatial libraries GDAL, GEOS, and PROJ.4 
 varies significantly based on operating system. These are all 
@@ -172,33 +205,8 @@ Linux users will have to install UDUNITS separately. Like the geospatial librari
 {: .solution}
 
 
-### R
 
-Participants who do not already have `R` installed should download and install it.
-
-> ## Windows
->
->To install `R`, Windows users should select "Download R for Windows" from RStudio and CRAN's [cloud download page](https://cloud.r-project.org), which will automatically detect a CRAN mirror for you to use. Select the `base` subdirectory after choosing the Windows download page. A `.exe` executable file containing the necessary components of base R can be downloaded by clicking on "Download R 3.x.x for Windows".
->
-{: .solution}
-
-> ## macOS
->
->To install `R`, macOS users should select "Download R for (Mac) OS X" from RStudio and CRAN's [cloud download page](https://cloud.r-project.org), which will automatically detect a CRAN mirror for you to use. A `.pkg` file containing the necessary components of base R can be downloaded by clicking on the first available link (this will be the most recent), which will read `R-3.x.x.pkg`.
->
-{: .solution}
-
-> ## Linux
->
->To install `R`, Linux users should select "Download R for Linux" from RStudio and CRAN's [cloud download page](https://cloud.r-project.org), which will automatically detect a CRAN mirror for you to use. Instructions for a number of different Linux operating systems are available.
->
-{: .solution}
-
-### RStudio
-
-RStudio is a GUI for using `R` that is available for Windows, macOS, and various Linux operating systems. It can be downloaded [here](https://www.rstudio.com/products/rstudio/download/). You will need the **free** Desktop version for your computer. *In order to address issues with `ggplot2`, learners and instructors should run a recent version of RStudio (v1.2 or greater).*
-
-### R Packages
+## R Packages
 
 The following `R` packages are used in the various geospatial lessons.
 
@@ -246,6 +254,21 @@ The downloaded binary packages are in
 /var/folders/7g/r8_n81y534z0vy5hxc6dx1t00000gn/T//RtmpJECKXM/downloaded_packages
 ~~~
 {: .output}
+
+## Make the test map
+If you do not know how to run R scripts, you may want to consider
+taking our Intro to R in the Fall!
+
+1. Download and install [`InstallTest.zip`](https://drive.google.com/file/d/19y6-R_mob8Nij-ItWW5Iaf7ulvqFVP_w/view)
+from our Google Drive.
+
+1. Launch RStudio by double-clicking `InstallTest.r`
+
+1. The following image should draw (you may need to click "Zoom" to 
+get this format
+
+![An elevation map of campus with location of signs on
+the Coal Oil Point reserve](fig/installtest.png)
 
 You are now ready for the workshop!
 
