@@ -4,23 +4,26 @@
 up-to-date browser. 
 - If you are attending this workshop remotely, please 
 also install/update the Zoom video conferencing application.  
--For this 
-workshop, we have [a cloud instance of RStudio](https://carpentryworkshop.lsit.ucsb.edu/) 
+- For this 
+workshop, we are using a [cloud instance of 
+RStudio provided by LSIT](https://carpentryworkshop.lsit.ucsb.edu/) 
 that comes with 
-all the necessary packages. You will not need to install 
-anything for the workshop.
+all the necessary packages. If you choose this option, you will not need to install 
+anything for the workshop. You only need to sign on with your 
+UCSBnetID and upload the data.
 -If you would like to go through the workshop with 
 your local RStudio instead, you may follow the below instructions, make sure
-to follow the instructions for setting up GDAL and the Spatial Extensions below.
+to follow the instructions for setting up GDAL and the Spatial Extensions!
 
 ## Data (Required)
 
 You can download all of the data used in this workshop by clicking
 [this download link](https://ndownloader.figshare.com/articles/2009586/versions/10). The file is 218.2 MB.
 
-Clicking the download link will automatically download all of the files to your default download directory as a single compressed
-(`.zip`) file. To expand this file, double click the folder icon in your file navigator application (for Macs, this is the Finder
-application).
+Clicking the download link will automatically download all of the files 
+to your default download directory as a single compressed (`.zip`) file. 
+To unzip this file, double click the folder icon in your file navigator 
+application (for Macs, this is the Finder application).
 
 For a full description of the data used in this workshop see the [data page](https://github.com/datacarpentry/geospatial-workshop/blob/gh-pages/data).
 
@@ -30,6 +33,7 @@ For a full description of the data used in this workshop see the [data page](htt
 ### Software
 
 ** You should already have **
+
 | Software | Install | Manual | Available for | Description |
 | -------- | ------------ | ------ | ------------- | ----------- |
 | [R](https://www.r-project.org) | [Link](https://cloud.r-project.org) | [Link](https://cloud.r-project.org) | Linux, MacOS, Windows | Software environment for statistical and scientific computing |
@@ -66,7 +70,8 @@ Mac users beware!
 > already have most of these dependancies taken care of.
 >
 > You may or may not need to install various underlying components
-> of GDAL. You can get everytin in one package by installin 
+> of GDAL. You can get everything necessary for the workshop 
+> (GDAL, GEOS, PROJ) in one package by installing 
 > the latest version of [Kyng Chaos's pre-built 
 > package for GDAL Complete](http://www.kyngchaos.com/software/frameworks). Be aware that several other libraries are also installed, 
 > including the UnixImageIO, SQLite3, and `NumPy`.  Please install all 
